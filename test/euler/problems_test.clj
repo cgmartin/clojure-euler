@@ -13,3 +13,9 @@
     (is (= 10      (p2 10)))
     (is (= 4613732 (p2 4000000)))
   ))
+
+(deftest p3-test
+  (testing "Largest prime factor"
+    (is (= 29   (p3 13195)))
+    (is (= 6857 (p3 600851475143)))
+  ))

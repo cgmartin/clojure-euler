@@ -24,5 +24,14 @@
     (filter even?
       (take-while #(<= % m) (fib 1 2)))))
 
-
+;
+; Problem 3 : Largest prime factor
+; http://projecteuler.net/problem=3
+; http://en.wikipedia.org/wiki/Trial_division
+(defn p3
+  "Largest prime factor"
+  [n]
+  (last
+    (filter #(multiple? n %)
+            (take-while #(<= (* % %) n) (prime-sieve)))))
 
