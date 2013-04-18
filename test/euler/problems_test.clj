@@ -19,3 +19,10 @@
     (is (= 29   (p3 13195)))
     (is (= 6857 (p3 600851475143)))
   ))
+
+(deftest p4-test
+  (testing "Largest palindrome product"
+    (is (= 9009     (p4 10   100)))
+    (is (= 906609   (p4 100  1000)))
+    ;(is (= 99000099 (p4 1000 10000))) ; FIXME slow, needs optimization
+    ))

@@ -32,4 +32,16 @@
     (is (= '(2 3 5 7 11 13 17 19 23 29) (take 10 (prime-sieve))))
     ))
 
-
+(deftest palindrome?-test
+  (testing
+    (is (palindrome? 1))
+    (is (palindrome? 22))
+    (is (palindrome? 303))
+    (is (palindrome? 4114))
+    (is (palindrome? 12321))
+    (is (palindrome? "abba"))
+    (is (palindrome? "anana"))
+    (is (not (palindrome? 12)))
+    (is (not (palindrome? 123)))
+    (is (not (palindrome? 1232)))
+    ))

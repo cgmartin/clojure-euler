@@ -1,4 +1,5 @@
 (ns euler.util
+  (:use [clojure.string :as str :only []])
   (:import [java.math BigInteger]))
 
 (defn multiple? [n div]
@@ -10,7 +11,7 @@
     (lazy-seq
       (fib b (+ b a)))))
 
-; http://clj-me.cgrand.net/2009/07/30/everybody-loves-the-sieve-of-eratosthenes/
+; From http://clj-me.cgrand.net/2009/07/30/everybody-loves-the-sieve-of-eratosthenes/
 (defn prime-sieve []
   (letfn [(enqueue [sieve n step]
             (let [m (+ n step)]
@@ -34,3 +35,8 @@
 (defn prime? [n]
   (if (and (not= n 2) (even? n)) false
       (some #(= n %) (take-while #(<= % n) (prime-sieve))))) ; in prime-sieve list?
+
+; FIXME optimize?
+(defn palindrome? [s]
+  (= (str s) (str/reverse (str s))))
+
