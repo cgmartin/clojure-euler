@@ -38,6 +38,7 @@
 ;
 ; Problem 4 : Largest palindrome product
 ; http://projecteuler.net/problem=4
+; http://clojuredocs.org/clojure_core/clojure.core/for
 ;
 (defn p4
   "Largest palindrome product"
@@ -47,3 +48,14 @@
       (filter palindrome? (for [x digits-3
                                 y digits-3]
                             (* x y)) ))))
+
+(defn p4b
+  "Largest palindrome product"
+  [m n]
+  (apply max
+    (let [digits-3 (range m n)]
+      (for [x digits-3
+            y digits-3
+            :let [product (* x y)]
+            :when (palindrome? product)]
+        product))))

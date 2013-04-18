@@ -22,7 +22,8 @@
 
 (deftest p4-test
   (testing "Largest palindrome product"
-    (is (= 9009     (p4 10   100)))
-    (is (= 906609   (p4 100  1000)))
-    ;(is (= 99000099 (p4 1000 10000))) ; FIXME slow, needs optimization
+    (is (= 9        (p4 1    10)   (p4b 1    10)))
+    (is (= 9009     (p4 10   100)  (p4b 10   100)))
+    (is (= 906609   (p4 100  1000) (p4b 100  1000)))
+    ;(is (= 99000099 (p4 1000 10000))) ; FIXME slow, optimize?
     ))
