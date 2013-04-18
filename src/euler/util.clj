@@ -1,6 +1,5 @@
 (ns euler.util
-  (:use [clojure.string :as str :only []])
-  (:import [java.math BigInteger]))
+  (:use [clojure.string :as str :only []]))
 
 (defn multiple? [n div]
   (= 0 (mod n div)))

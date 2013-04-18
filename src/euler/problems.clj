@@ -1,5 +1,6 @@
 (ns euler.problems
-  (:use euler.util))
+  (:use euler.util)
+  (:require [clojure.math.numeric-tower :as math]))
 
 ;
 ; Problem 1 : Multiples of 3 and 5
@@ -7,7 +8,7 @@
 ;
 (letfn [(multiple-3-5? [n]
           (or (multiple? n 3) (multiple? n 5)))]
-  (defn p1
+  (defn problem1
     "Sum of multiples 3 and 5"
     [n]
     (reduce + (filter multiple-3-5? (range n)))))
@@ -16,19 +17,19 @@
 ; Problem 2 : Even Fibonacci numbers
 ; http://projecteuler.net/problem=2
 ;
-(defn p2
+(defn problem2
   "Even Fibonacci numbers"
-  [m]
+  [n]
   (reduce +
     (filter even?
-      (take-while #(<= % m) (fib 1 2)))))
+      (take-while #(<= % n) (fib 1 2)))))
 
 ;
 ; Problem 3 : Largest prime factor
 ; http://projecteuler.net/problem=3
 ; http://en.wikipedia.org/wiki/Trial_division
 ;
-(defn p3
+(defn problem3
   "Largest prime factor"
   [n]
   (last
@@ -40,22 +41,31 @@
 ; http://projecteuler.net/problem=4
 ; http://clojuredocs.org/clojure_core/clojure.core/for
 ;
-(defn p4
+(defn problem4
   "Largest palindrome product"
   [m n]
   (apply max
-    (let [digits-3 (range m n)]
-      (filter palindrome? (for [x digits-3
-                                y digits-3]
+    (let [digits (range m n)]
+      (filter palindrome? (for [x digits
+                                y digits]
                             (* x y)) ))))
 
-(defn p4b
+(defn problem4b
   "Largest palindrome product"
   [m n]
   (apply max
-    (let [digits-3 (range m n)]
-      (for [x digits-3
-            y digits-3
+    (let [digits (range m n)]
+      (for [x digits
+            y digits
             :let [product (* x y)]
             :when (palindrome? product)]
         product))))
+
+;
+; Problem 5 : Smallest multiple
+; http://projecteuler.net/problem=5
+;
+(defn problem5
+  "Smallest multiple"
+  [m n]
+  (reduce math/lcm (range m n)))
