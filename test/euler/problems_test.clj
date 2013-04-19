@@ -45,3 +45,8 @@
     (is (= 13     (problem7 6)))
     (is (= 104743 (problem7 10001)))
     ))
+
+(deftest problem8-test
+  (testing "Largest product in a series"
+    (is (= 40824 (problem8 "./data/problem8.txt")))
+    ))

@@ -87,9 +87,19 @@
 
 ;
 ; Problem 7 : 10001st prime
-; http://projecteuler.net/problem=6
+; http://projecteuler.net/problem=7
 ;
 (defn problem7
   "10001st prime"
   [n]
   (nth (prime-sieve) (- n 1)))
+
+;
+; Problem 8 : Largest product in a series
+; http://projecteuler.net/problem=8
+;
+(defn problem8
+  "Largest product in a series"
+  [file]
+  (let [numbers (map #(Integer. %) (re-seq #"\d" (slurp file)))]
+    (apply max (map #(apply * %) (partition 5 1 numbers)))))
