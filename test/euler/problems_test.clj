@@ -33,3 +33,9 @@
     (is (= 2520      (problem5 1 10)))
     (is (= 232792560 (problem5 1 20)))
     ))
+
+(deftest problem6-test
+  (testing "Sum square difference"
+    (is (= 2640      (problem6 1 11)))
+    (is (= 25164150  (problem6 1 101)))
+    ))

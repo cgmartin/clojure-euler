@@ -2,6 +2,9 @@
   (:use euler.util)
   (:require [clojure.math.numeric-tower :as math]))
 
+; REPL
+; (require '[clojure.math.numeric-tower :as math])
+
 ;
 ; Problem 1 : Multiples of 3 and 5
 ; http://projecteuler.net/problem=1
@@ -45,18 +48,18 @@
   "Largest palindrome product"
   [m n]
   (apply max
-    (let [digits (range m n)]
-      (filter palindrome? (for [x digits
-                                y digits]
+    (let [numbers (range m n)]
+      (filter palindrome? (for [x numbers
+                                y numbers]
                             (* x y)) ))))
 
 (defn problem4b
   "Largest palindrome product"
   [m n]
   (apply max
-    (let [digits (range m n)]
-      (for [x digits
-            y digits
+    (let [numbers (range m n)]
+      (for [x numbers
+            y numbers
             :let [product (* x y)]
             :when (palindrome? product)]
         product))))
@@ -69,3 +72,15 @@
   "Smallest multiple"
   [m n]
   (reduce math/lcm (range m n)))
+
+;
+; Problem 6 : Sum square difference
+; http://projecteuler.net/problem=6
+;
+(defn problem6
+  "Sum square difference"
+  [m n]
+  (let [numbers (range m n)]
+    (-
+      (math/expt (reduce + numbers) 2)
+      (reduce + (map #(math/expt % 2) numbers)))))
