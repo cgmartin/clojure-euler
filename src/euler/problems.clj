@@ -82,5 +82,14 @@
   [m n]
   (let [numbers (range m n)]
     (-
-      (math/expt (reduce + numbers) 2)
-      (reduce + (map #(math/expt % 2) numbers)))))
+      (math/expt (apply + numbers) 2)
+      (apply + (map #(math/expt % 2) numbers)))))
+
+;
+; Problem 7 : 10001st prime
+; http://projecteuler.net/problem=6
+;
+(defn problem7
+  "10001st prime"
+  [n]
+  (nth (prime-sieve) (- n 1)))

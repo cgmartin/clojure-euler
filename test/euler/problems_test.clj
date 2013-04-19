@@ -39,3 +39,9 @@
     (is (= 2640      (problem6 1 11)))
     (is (= 25164150  (problem6 1 101)))
     ))
+
+(deftest problem7-test
+  (testing "10001st prime"
+    (is (= 13     (problem7 6)))
+    (is (= 104743 (problem7 10001)))
+    ))
