@@ -50,3 +50,9 @@
   (testing "Largest product in a series"
     (is (= 40824 (problem8 "./data/problem8.txt")))
     ))
+
+(deftest problem9-test
+  (testing "Special Pythagorean triplet"
+    (is (= 60       (problem9 12)))
+    (is (= 31875000 (problem9 1000)))
+    ))

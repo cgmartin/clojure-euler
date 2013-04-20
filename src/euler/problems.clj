@@ -1,9 +1,11 @@
 (ns euler.problems
   (:use euler.util)
-  (:require [clojure.math.numeric-tower :as math]))
+  (:require [clojure.math.numeric-tower :as math])
+  (:require [clojure.math.combinatorics :as combo]))
 
 ; REPL
 ; (require '[clojure.math.numeric-tower :as math])
+; (require '[clojure.math.combinatorics :as combo])
 
 ;
 ; Problem 1 : Multiples of 3 and 5
@@ -103,3 +105,20 @@
   [file]
   (let [numbers (map #(Integer. %) (re-seq #"\d" (slurp file)))]
     (apply max (map #(apply * %) (partition 5 1 numbers)))))
+
+;
+; Problem 9 : Special Pythagorean triplet
+; http://projecteuler.net/problem=9
+;
+(defn problem9
+  "Special Pythagorean triplet"
+  [n]
+  (apply *
+    (first
+      (for [a (range 1 (int (/ n 2)))
+            b (range a n)
+            :let [c (math/sqrt (+ (* a a) (* b b)))]
+            :when (= n (+ a b c))]
+        [a b c]))))
+
+
