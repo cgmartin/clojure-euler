@@ -116,9 +116,18 @@
   (apply *
     (first
       (for [a (range 1 (int (/ n 2)))
-            b (range a n)
+            b (range (+ a 1) n)       ; (a < b < c)
             :let [c (math/sqrt (+ (* a a) (* b b)))]
             :when (= n (+ a b c))]
         [a b c]))))
 
+;
+; Problem 10 : Summation of primes
+; http://projecteuler.net/problem=10
+;
+(defn problem10
+  "Summation of primes"
+  [n]
+  (reduce +
+    (take-while #(< % n) (prime-sieve))))
 

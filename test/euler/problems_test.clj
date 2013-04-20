@@ -56,3 +56,9 @@
     (is (= 60       (problem9 12)))
     (is (= 31875000 (problem9 1000)))
     ))
+
+(deftest problem10-test
+  (testing "Summation of primes"
+    (is (= 17           (problem10 10)))
+    (is (= 142913828922 (problem10 2000000)))
+    ))
