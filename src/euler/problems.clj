@@ -131,3 +131,19 @@
   (reduce +
     (take-while #(< % n) (prime-sieve))))
 
+;
+; Problem 11 : Largest product in a series
+; http://projecteuler.net/problem=8
+;
+(defn problem11
+  "Largest product in a grid"
+  [n grid-size file]
+  (let [grid (vec (partition grid-size (map #(Integer. %) (re-seq #"\d\d" (slurp file)))))]
+    (apply max
+      (for [col (range grid-size)
+            row (range grid-size)
+            delta-yx [[1 0] [1 1] [0 1] [-1 1]]] ; is not xy due to vector indexing
+        (apply *
+          (for [yx (take n (iterate #(map + delta-yx %) [row col]))
+              :while (every? #(< -1 % grid-size) yx)]
+            (reduce nth grid yx)))))))

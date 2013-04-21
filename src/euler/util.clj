@@ -39,3 +39,9 @@
 (defn palindrome? [s]
   (= (str s) (str/reverse (str s))))
 
+(defn pluck
+  "Pluck multiple indexes out of a list"
+  [s indexes]
+  (for [i indexes]
+    (nth s i)))
+

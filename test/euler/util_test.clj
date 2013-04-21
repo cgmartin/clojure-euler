@@ -45,3 +45,9 @@
     (is (not (palindrome? 123)))
     (is (not (palindrome? 1232)))
     ))
+
+(deftest pluck-test
+  (testing
+    (is (= '(3 4) (pluck '(1 2 3 4 5) '(2 3))))
+    (is (= '(3 5) (pluck '(1 2 3 4 5) '(2 4))))
+    ))

@@ -62,3 +62,9 @@
     (is (= 17           (problem10 10)))
     (is (= 142913828922 (problem10 2000000)))
     ))
+
+(deftest problem11-test
+  (testing "Largest product in a grid"
+    (is (= 9603     (problem11 2 20 "./data/problem11.txt")))
+    (is (= 70600674 (problem11 4 20 "./data/problem11.txt")))
+    ))
