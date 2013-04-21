@@ -32,6 +32,11 @@
     (is (= '(2 3 5 7 11 13 17 19 23 29) (take 10 (prime-sieve))))
     ))
 
+(deftest prime-factors-test
+  (testing
+    (is (= '(2 2 7) (prime-factors 28)))
+    ))
+
 (deftest palindrome?-test
   (testing
     (is (palindrome? 1))

@@ -68,3 +68,9 @@
     (is (= 9603     (problem11 2 20 "./data/problem11.txt")))
     (is (= 70600674 (problem11 4 20 "./data/problem11.txt")))
     ))
+
+(deftest problem12-test
+  (testing "Highly divisible triangular number"
+    (is (= 28       (problem12 5)))
+    (is (= 76576500 (problem12 500)))
+    ))
