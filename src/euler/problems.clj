@@ -144,10 +144,8 @@
       (if (> carry 0)
         (conj acc carry)
         acc)
-      (let [n (+ (first l) carry)
-            r (if (> n 9) (- n 10) n)
-            c (if (> n 9) 1 0)]
-        (recur (rest l) (conj acc r) c)))))
+      (let [n (+ (first l) carry)]
+        (recur (rest l) (conj acc (rem n 10)) (quot n 10))))))
 
 (defn problem13
   "Large sum"
