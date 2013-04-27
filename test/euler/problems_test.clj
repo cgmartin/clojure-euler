@@ -74,3 +74,8 @@
     (is (= 28       (problem12 5)))
     (is (= 76576500 (problem12 500)))
     ))
+
+(deftest problem13-test
+  (testing "Large sum"
+    (is (= "5537376230" (apply str (take 10 (problem13 50 "./data/problem13.txt")))))
+    ))

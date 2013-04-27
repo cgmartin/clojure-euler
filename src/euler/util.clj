@@ -1,6 +1,10 @@
 (ns euler.util
   (:use [clojure.string :as str :only []]))
 
+; From http://stackoverflow.com/questions/2352020/debugging-in-clojure
+(defmacro dbg[x]
+  `(let [x# ~x] (println "dbg:" '~x "=" x#) x#))
+
 (defn multiple? [n div]
   (zero? (mod n div)))
 
@@ -59,6 +63,14 @@
   [s indexes]
   (for [i indexes]
     (nth s i)))
+
+(defn pad
+  "Pad a list with items"
+  ([l n] (pad l n 0))
+  ([l n p]
+    (if (> n 0)
+      (concat (take n (repeat p)) l)
+      l)))
 
 (defn triangle-nums
   "Adds the natural numbers to get a triangle number"

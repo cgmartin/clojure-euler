@@ -124,7 +124,7 @@
             delta-yx [[1 0] [1 1] [0 1] [-1 1]]] ; is not xy due to vector indexing
         (apply *
           (for [yx (take n (iterate #(map + delta-yx %) [row col]))
-              :while (every? #(< -1 % grid-size) yx)]
+                :while (every? #(< -1 % grid-size) yx)]
             (reduce nth grid yx)))))))
 
 
@@ -135,3 +135,29 @@
   (first
     (drop-while #(> n (num-divisors %)) (triangle-nums))))
 
+; Problem 13 : Large sum
+(defn- list-adder [l]
+  (loop [l (reverse l)
+         acc ()
+         carry 0]
+    (if (empty? l)
+      (if (> carry 0)
+        (conj acc carry)
+        acc)
+      (let [n (+ (first l) carry)
+            r (if (> n 9) (- n 10) n)
+            c (if (> n 9) 1 0)]
+        (recur (rest l) (conj acc r) c)))))
+
+(defn problem13
+  "Large sum"
+  [n file]
+  (let [numbers (partition n (map #(Integer. %) (re-seq #"\d" (slurp file))))]
+    (loop [numbers numbers
+           acc ()]
+      (if (empty? numbers)
+        acc
+        (if (empty? acc)
+          (recur (rest numbers) (first numbers))
+          (let [n (pad (first numbers) (- (count acc) (count (first numbers))))]
+            (recur (rest numbers) (list-adder (map + acc n)))))))))
