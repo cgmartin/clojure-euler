@@ -93,8 +93,14 @@
     (is (= 137846528820 (problem15 20)))
     ))
 
-(deftest problem15-test
+(deftest problem16-test
   (testing "Power digit sum"
     (is (= 26   (problem16 2 15)))
     (is (= 1366 (problem16 2 1000)))
+    ))
+
+(deftest problem17-test
+  (testing "Number letter counts"
+    (is (= 19    (problem17 1 5)))
+    (is (= 21124 (problem17 1 1000)))
     ))

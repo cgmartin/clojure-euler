@@ -207,3 +207,33 @@
       (+ n acc)
       (recur (quot n 10) (+ acc (rem n 10))))))
 
+; Problem 16 : Number letter counts
+; http://en.wikipedia.org/wiki/English_numerals
+(def num-words-lower
+  ["zero" "one" "two" "three" "four" "five" "six" "seven" "eight" "nine"
+   "ten" "eleven" "twelve" "thirteen" "fourteen" "fifteen" "sixteen" "seventeen"
+   "eighteen" "nineteen"])
+(def num-words-upper
+  [nil nil "twenty" "thirty" "forty" "fifty" "sixty" "seventy" "eighty" "ninety"])
+
+(defn- num-to-words
+  [n]
+  (cond
+    (< n 20)                           (num-words-lower n)
+    (and (< n 100) (zero? (rem n 10))) (num-words-upper (quot n 10))
+    (< n 100)  (str (num-to-words (- n (rem n 10))) "-" (num-to-words (rem n 10)))
+    (< n 1000) (str (num-to-words (quot n 100)) " hundred"
+                 (when (> (rem n 100) 0)
+                   (str " and " (num-to-words (rem n 100)))))
+    (= n 1000) "one thousand"))
+
+(defn- count-letters
+  [s]
+  (count (re-seq #"[a-zA-Z]" s)))
+
+(defn problem17
+  "Number letter counts"
+  [n m]
+  (reduce +
+    (map #(count-letters (num-to-words %)) (range n (+ m 1)))))
+
