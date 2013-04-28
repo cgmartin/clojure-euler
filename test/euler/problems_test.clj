@@ -79,3 +79,10 @@
   (testing "Large sum"
     (is (= "5537376230" (apply str (take 10 (problem13 50 "./data/problem13.txt")))))
     ))
+
+(deftest problem14-test
+  (testing "Longest Collatz sequence"
+    (is (= 9      (problem14 10)))
+    (is (= 97     (problem14 100)))
+    (is (= 837799 (problem14 1000000)))
+    ))

@@ -135,6 +135,7 @@
   (first
     (drop-while #(> n (num-divisors %)) (triangle-nums))))
 
+
 ; Problem 13 : Large sum
 (defn- list-adder [l]
   (loop [l (reverse l)
@@ -159,3 +160,27 @@
           (recur (rest numbers) (first numbers))
           (let [n (pad (first numbers) (- (count acc) (count (first numbers))))]
             (recur (rest numbers) (list-adder (map + acc n)))))))))
+
+
+; Problem 14 : Longest Collatz sequence
+(defn- collatz [n]
+  (if (even? n)
+    (/ n 2)
+    (+ (* 3 n) 1)))
+
+(defn- collatz-seq-count [n]
+  (loop [n n
+         i 0]
+    (if (<= n 1)
+      (inc i)
+      (recur (collatz n) (inc i)))))
+
+(defn problem14
+  "Longest Collatz sequence"
+  [n]
+  (last
+    (reduce
+      #(if (> (first %1) (first %2)) %1 %2)
+      (map #(vec [(collatz-seq-count %) %]) (range n)))))
+
+
