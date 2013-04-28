@@ -86,3 +86,9 @@
     (is (= 97     (problem14 100)))
     (is (= 837799 (problem14 1000000)))
     ))
+
+(deftest problem15-test
+  (testing "Lattice paths"
+    (is (= 6            (problem15 2)))
+    (is (= 137846528820 (problem15 20)))
+    ))

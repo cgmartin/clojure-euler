@@ -113,7 +113,7 @@
     (take-while #(< % n) (prime-sieve))))
 
 
-; Problem 11 : Largest product in a series
+; Problem 11 : Largest product in a grid
 (defn problem11
   "Largest product in a grid"
   [n grid-size file]
@@ -183,4 +183,15 @@
       #(if (> (first %1) (first %2)) %1 %2)
       (map #(vec [(collatz-seq-count %) %]) (range n)))))
 
+; Problem 15 : Lattice paths
+(def num-grid-paths
+  (memoize (fn [x y]
+             (if (or (= x 0) (= y 0))
+               1
+               (+ (num-grid-paths (dec x) y)
+                 (num-grid-paths x (dec y)))))))
 
+(defn problem15
+  "Lattice paths"
+  [grid-size]
+  (num-grid-paths grid-size grid-size))

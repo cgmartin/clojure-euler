@@ -77,3 +77,10 @@
   ([] (triangle-nums 1 1))
   ([i n] (cons n (lazy-seq (triangle-nums (inc i) (+ n (+ i 1)))))))
 
+(defn factorial
+  [n]
+  (reduce * (range 1 (inc n))))
+
+
+
+
