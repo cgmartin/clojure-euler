@@ -184,6 +184,7 @@
       (map #(vec [(collatz-seq-count %) %]) (range n)))))
 
 ; Problem 15 : Lattice paths
+; https://en.wikipedia.org/wiki/Pascal's_triangle
 (def num-grid-paths
   (memoize (fn [x y]
              (if (or (= x 0) (= y 0))
@@ -195,3 +196,14 @@
   "Lattice paths"
   [grid-size]
   (num-grid-paths grid-size grid-size))
+
+; Problem 16 : Power digit sum
+(defn problem16
+  "Power digit sum"
+  [base pow]
+  (loop [n (math/expt base pow)
+         acc 0]
+    (if (< n 10)
+      (+ n acc)
+      (recur (quot n 10) (+ acc (rem n 10))))))
+
