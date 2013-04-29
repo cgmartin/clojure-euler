@@ -56,3 +56,10 @@
     (is (= '(3 4) (pluck '(1 2 3 4 5) '(2 3))))
     (is (= '(3 5) (pluck '(1 2 3 4 5) '(2 4))))
     ))
+
+(deftest digits-test
+  (testing
+    (is (= '(0)     (digits 0)))
+    (is (= '(3 4)   (digits 34)))
+    (is (= '(1 2 3) (digits 123)))
+    ))

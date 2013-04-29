@@ -81,6 +81,31 @@
   [n]
   (reduce * (range 1 (inc n))))
 
+(defn digits
+  "Get the digits of a number"
+  [n]
+  (map #(Integer/parseInt (str %)) (seq (str n))))
+
+(defn list-add
+  "Add two (long) lists of digits"
+  [a b]
+  (let [next-digit (fn [s] (if (empty? s) 0 (first s)))]
+    (loop [a     (reverse a)
+           b     (reverse b)
+           acc   ()
+           carry 0]
+      (let [v (+ (next-digit a) (next-digit b) carry)
+            d (rem v 10)
+            c (quot v 10)]
+        (if (and (empty? a) (empty? b))
+          (if (zero? carry) acc (conj acc carry))
+          (recur (rest a) (rest b) (conj acc d) c))))))
+
+
+;(defn list-multiply
+;  [a b]
+;  (for []))
+
 
 
 
