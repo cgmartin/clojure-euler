@@ -207,7 +207,7 @@
       (+ n acc)
       (recur (quot n 10) (+ acc (rem n 10))))))
 
-; Problem 16 : Number letter counts
+; Problem 17 : Number letter counts
 ; http://en.wikipedia.org/wiki/English_numerals
 (def num-words-lower
   ["zero" "one" "two" "three" "four" "five" "six" "seven" "eight" "nine"
@@ -219,13 +219,15 @@
 (defn- num-to-words
   [n]
   (cond
-    (< n 20)                           (num-words-lower n)
-    (and (< n 100) (zero? (rem n 10))) (num-words-upper (quot n 10))
-    (< n 100)  (str (num-to-words (- n (rem n 10))) "-" (num-to-words (rem n 10)))
-    (< n 1000) (str (num-to-words (quot n 100)) " hundred"
-                 (when (> (rem n 100) 0)
-                   (str " and " (num-to-words (rem n 100)))))
-    (= n 1000) "one thousand"))
+    (< n 20)              (num-words-lower n)
+    (and
+      (< n 100)
+      (zero? (rem n 10))) (num-words-upper (quot n 10))
+    (< n 100)             (str (num-to-words (- n (rem n 10))) "-" (num-to-words (rem n 10)))
+    (< n 1000)            (str (num-to-words (quot n 100)) " hundred"
+                            (when (> (rem n 100) 0)
+                              (str " and " (num-to-words (rem n 100)))))
+    (= n 1000)            "one thousand"))
 
 (defn- count-letters
   [s]
@@ -236,4 +238,50 @@
   [n m]
   (reduce +
     (map #(count-letters (num-to-words %)) (range n (+ m 1)))))
+
+
+; Problem 18 : Maximum path sum I
+(defn- reduce-max-triangle
+  [a b]
+  (vec
+    (for [i (range (count b))]
+      (+ (max (a i) (a (inc i))) (b i)))))
+
+(defn problem18
+  "Maximum path sum I"
+  [file]
+  (let [triangle (for [row (.split (slurp file) "\n")]
+                   (vec (map #(Integer. %) (.split row "\\s"))))]
+    (first
+      (reduce reduce-max-triangle (reverse triangle)))))
+
+
+; Problem 19 : Counting Sundays
+(defn leap-year?
+  [year]
+  (cond
+    (zero? (rem year 100)) (if (zero? (rem year 400)) true false)
+    (zero? (rem year 4))   true
+    :else                  false))
+
+(defn- days-in-year
+  [year]
+  (if (leap-year? year) 366 365))
+
+(defn- num-days-on-first-of-month
+  [day year]
+  (let [start-day  (rem (reduce + (map #(days-in-year %) (range 1900 year))) 7) ; Mon = 0
+        day-sub    (- day start-day)
+        day-offset (if (< day-sub 0) (+ 6 day-sub) day-sub)
+        feb        (if (leap-year? year) 29 28)
+        days       [31 feb 31 30 31 30 31 31 30 31 30 31]
+        month-offsets (map
+                        #(reduce + (map days (range %)))
+                        (range 12))]
+    (reduce + (map #(if (= (rem % 7) day-offset) 1 0) month-offsets))))
+
+(defn problem19
+  "Counting Sundays"
+  [start-year end-year day]
+  (reduce + (map #(num-days-on-first-of-month day %) (range start-year (inc end-year)))))
 

@@ -104,3 +104,14 @@
     (is (= 19    (problem17 1 5)))
     (is (= 21124 (problem17 1 1000)))
     ))
+
+(deftest problem18-test
+  (testing "Maximum path sum I"
+    (is (= 23   (problem18 "./data/problem18-1.txt")))
+    (is (= 1074 (problem18 "./data/problem18-2.txt")))
+    ))
+
+(deftest problem19-test
+  (testing "Counting Sundays"
+    (is (= 171    (problem19 1901 2000 6)))
+    ))
