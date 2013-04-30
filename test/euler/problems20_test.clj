@@ -8,3 +8,9 @@
     (is (= 648 (problem20 100)))
   ))
 
+(deftest problem21-test
+  (testing "Amicable numbers"
+    (is (= 504   (problem21 1000)))
+    (is (= 31626 (problem21 10000)))
+    ))
+

@@ -19,3 +19,18 @@
       (map digits (range 1 (inc n))))
     ))
 
+; Problem 21 : Amicable numbers
+(defn problem21
+  "Amicable numbers"
+  [n]
+  (let [spd-map
+        (apply conj
+          (map #(hash-map % (sum-proper-divisors %)) (range 2 n)))]
+    (reduce +
+      (map first
+        (filter
+          #(and
+             (not= (first %) (last %))
+             (= (first %) (spd-map (last %))))
+          (seq spd-map))))))
+

@@ -1,5 +1,6 @@
 (ns euler.util
-  (:use [clojure.string :as str :only []]))
+  (:use [clojure.string :as str :only []])
+  (:require [clojure.math.numeric-tower :as math]))
 
 ; From http://stackoverflow.com/questions/2352020/debugging-in-clojure
 (defmacro dbg[x]
@@ -49,6 +50,18 @@
   (reduce #(* %1 (inc %2)) 1
     (vals
       (frequencies (prime-factors n)))))
+
+; http://en.wikipedia.org/wiki/Divisor_function
+(defn sum-int-divisors [n]
+  (reduce *
+    (map
+      (fn [m]
+        (reduce +
+          (map #(math/expt (first m) %) (range (inc (last m))))))
+      (frequencies (prime-factors n)))))
+
+(defn sum-proper-divisors [n]
+  (- (sum-int-divisors n) n))
 
 (defn prime? [n]
   (if (and (not= n 2) (even? n)) false
@@ -132,7 +145,4 @@
         (rest b)                   ;   5(8)31 x  = 71874699 (00)
         (conj acc (concat (list-multiply-digit a (first b)) (repeat i 0)))
         (inc i)))))
-
-
-
 

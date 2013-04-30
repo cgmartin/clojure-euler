@@ -73,3 +73,10 @@
   (testing
     (is (= "139676498390" (reduce str (list-multiply '(2 3 9 5 8 2 3 3) '(5 8 3 0)))))
     ))
+
+(deftest sum-proper-divisors-test
+  (testing
+    (is (= 284 (sum-proper-divisors 220)))
+    (is (= 220 (sum-proper-divisors 284)))
+    (is (= 568 (sum-proper-divisors 300)))
+    ))
