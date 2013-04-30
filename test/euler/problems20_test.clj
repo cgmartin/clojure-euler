@@ -3,8 +3,8 @@
         euler.problems20))
 
 (deftest problem20-test
-  (testing "Sum of multiples 3 and 5"
-    (is (= 27     (problem20 10)))
-    (is (= 27 (problem20 100)))
+  (testing "Factorial digit sum"
+    (is (= 27  (problem20 10)))
+    (is (= 648 (problem20 100)))
   ))
 

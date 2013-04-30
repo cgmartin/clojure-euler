@@ -14,5 +14,8 @@
 (defn problem20
   "Factorial digit sum"
   [n]
-  (reduce + (digits (factorial n))))
+  (reduce +
+    (reduce list-multiply
+      (map digits (range 1 (inc n))))
+    ))
 
