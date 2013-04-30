@@ -63,3 +63,13 @@
     (is (= '(3 4)   (digits 34)))
     (is (= '(1 2 3) (digits 123)))
     ))
+
+(deftest list-multiply-digit-test
+  (testing
+    (is (= "71874699" (reduce str (list-multiply-digit '(2 3 9 5 8 2 3 3) 3))))
+    ))
+
+(deftest list-multiply-test
+  (testing
+    (is (= "139676498390" (reduce str (list-multiply '(2 3 9 5 8 2 3 3) '(5 8 3 0)))))
+    ))

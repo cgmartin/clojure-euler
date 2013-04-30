@@ -86,25 +86,52 @@
   [n]
   (map #(Integer/parseInt (str %)) (seq (str n))))
 
+(defn- next-list-digit
+  [s]
+  (if (empty? s) 0 (first s)))
+
 (defn list-add
   "Add two (long) lists of digits"
   [a b]
-  (let [next-digit (fn [s] (if (empty? s) 0 (first s)))]
-    (loop [a     (reverse a)
-           b     (reverse b)
-           acc   ()
-           carry 0]
-      (let [v (+ (next-digit a) (next-digit b) carry)
-            d (rem v 10)
-            c (quot v 10)]
-        (if (and (empty? a) (empty? b))
-          (if (zero? carry) acc (conj acc carry))
-          (recur (rest a) (rest b) (conj acc d) c))))))
+  (loop [a     (reverse a)
+         b     (reverse b)
+         acc   ()
+         carry 0]
+    (let [v (+ (next-list-digit a) (next-list-digit b) carry)
+          d (rem v 10)
+          c (quot v 10)]
+      (if (and (empty? a) (empty? b))
+        (if (zero? carry) acc (conj acc carry))
+        (recur (rest a) (rest b) (conj acc d) c)))))
 
+(defn list-multiply-digit
+  "Multiply a digit against a (long) list of digits"
+  [a n]
+  (loop [a (reverse a)
+         n n
+         acc ()
+         carry 0]
+    (let [v (+ (* (next-list-digit a) n) carry)
+          d (rem v 10)
+          c (quot v 10)]
+      (if (empty? a)
+        (if (zero? carry) acc (conj acc carry))
+        (recur (rest a) n (conj acc d) c)))))
 
-;(defn list-multiply
-;  [a b]
-;  (for []))
+(defn list-multiply
+  "Multiply two (long) lists of digits"
+  [a b]
+  (loop [a   a
+         b   (reverse b)
+         acc ()
+         i   0]
+    (if (empty? b)
+      (reduce list-add acc)
+      (recur
+        a                          ; 23958233
+        (rest b)                   ;   5(8)31 x  = 71874699 (00)
+        (conj acc (concat (list-multiply-digit a (first b)) (repeat i 0)))
+        (inc i)))))
 
 
 
