@@ -5,17 +5,20 @@
 (deftest problem20-test
   (testing "Factorial digit sum"
     (is (= 27  (problem20 10)))
-    (is (= 648 (problem20 100)))
   ))
 
 (deftest problem21-test
   (testing "Amicable numbers"
     (is (= 504   (problem21 1000)))
-    (is (= 31626 (problem21 10000)))
     ))
 
 (deftest problem22-test
   (testing "Names scores"
     (is (= 871198282   (problem22 "./data/names.txt")))
+    ))
+
+(deftest problem23-test
+  (testing "Non-abundant sums"
+    (is (= 2867    (problem23 103)))
     ))
 

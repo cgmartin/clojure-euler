@@ -80,3 +80,10 @@
     (is (= 220 (sum-proper-divisors 284)))
     (is (= 568 (sum-proper-divisors 300)))
     ))
+
+(deftest abundant-number?-test
+  (testing
+    (is (= true  (abundant-number? 12)))
+    (is (= false (abundant-number? 15)))
+    (is (= true  (abundant-number? 102)))
+    ))

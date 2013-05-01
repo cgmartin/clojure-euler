@@ -19,6 +19,7 @@
       (map digits (range 1 (inc n))))
     ))
 
+
 ; Problem 21 : Amicable numbers
 (defn problem21
   "Amicable numbers"
@@ -34,6 +35,7 @@
              (= (first %) (spd-map (last %))))
           (seq spd-map))))))
 
+
 ; Problem 22 : Names scores
 (defn problem22
   "Names scores"
@@ -46,3 +48,13 @@
           (reduce +
             (map #(inc (- (int %) (int \A))) (seq (nth names i)))))))))
 
+
+; Problem 23 : Non-abundant sums
+(defn problem23
+  "Non-abundant sums"
+  [n]
+  (let [ab-sums
+        (set (map #(+ (first %) (last %))
+               (combo/selections (filter abundant-number? (range 1 n)) 2)))]
+    (reduce +
+      (filter #(nil? (ab-sums %)) (range 1 n)))))
