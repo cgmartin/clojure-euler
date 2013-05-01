@@ -14,3 +14,8 @@
     (is (= 31626 (problem21 10000)))
     ))
 
+(deftest problem22-test
+  (testing "Names scores"
+    (is (= 871198282   (problem22 "./data/names.txt")))
+    ))
+

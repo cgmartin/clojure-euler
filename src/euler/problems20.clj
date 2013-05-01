@@ -34,3 +34,15 @@
              (= (first %) (spd-map (last %))))
           (seq spd-map))))))
 
+; Problem 22 : Names scores
+(defn problem22
+  "Names scores"
+  [file]
+  (let [names (sort (map #(last (re-find #"\"(.*)\"" %)) (.split (slurp file) ",")))]
+    (reduce +
+      (for [i (range (count names))
+            :let [j (inc i)]]
+        (* j
+          (reduce +
+            (map #(inc (- (int %) (int \A))) (seq (nth names i)))))))))
+
