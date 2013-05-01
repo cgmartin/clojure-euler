@@ -59,9 +59,22 @@
     (reduce +
       (filter #(nil? (ab-sums %)) (range 1 n)))))
 
+
 ; Problem 24 : Lexicographic permutations
 (defn problem24
   "Lexicographic permutations"
   [s i]
   (apply str
     (nth (combo/permutations s) (dec i))))
+
+
+; Problem 25 : 1000-digit Fibonacci number
+(defn problem25
+  "1000-digit Fibonacci number"
+  [n]
+  (inc
+    (first ; zero-based index
+      (first ; vector
+        (drop-while #(< (count (last %)) n)
+          (map-indexed vector
+            (list-add-fib [1] [1])))))))

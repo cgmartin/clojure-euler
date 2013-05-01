@@ -120,6 +120,11 @@
         (if (zero? carry) acc (conj acc carry))
         (recur (rest a) (rest b) (conj acc d) c)))))
 
+(defn list-add-fib [a b]
+  (cons a
+    (lazy-seq
+      (list-add-fib b (list-add b a)))))
+
 (defn list-multiply-digit
   "Multiply a digit against a (long) list of digits"
   [a n]

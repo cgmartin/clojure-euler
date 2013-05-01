@@ -27,3 +27,9 @@
     (is (= "102" (problem24 '(0 1 2) 3)))
     ))
 
+(deftest problem25-test
+  (testing "Lexicographic permutations"
+    (is (= 45  (problem25 10)))
+    (is (= 476 (problem25 100)))
+    ))
+
