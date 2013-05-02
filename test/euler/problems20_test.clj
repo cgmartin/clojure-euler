@@ -44,3 +44,9 @@
     (is (= -21   (problem27 10)))
     (is (= -1455 (problem27 100)))
     ))
+
+(deftest problem28-test
+  (testing "Number spiral diagonals"
+    (is (= 101 (problem28 5)))
+    (is (= 261 (problem28 7)))
+    ))

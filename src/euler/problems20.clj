@@ -91,6 +91,7 @@
           (map #(hash-map % (multiplicative-order 10 %))
             (take-while #(< % n) (prime-sieve))))))))
 
+
 ; Problem 27 : Quadratic primes
 (defn problem27
   "Quadratic primes"
@@ -107,3 +108,20 @@
                 {:a a, :b b, :n n}
                 (recur a b (inc n))))))]
     (* (best :a) (best :b))))
+
+
+; Problem 28 : Number spiral diagonals
+(defn problem28
+  "Number spiral diagonals"
+  [n]
+  (let [grid (* n n)]
+    (reduce +
+      (loop [i 1    ; running increment -> 1 9 25 49 ...
+             d 2    ; running delta -> 2 4 6 8 ...
+             acc ()]
+        (if (= i grid)
+          (concat acc [i]) ; include last number
+          (recur (+ i (* d 4)) (+ d 2)
+            (concat acc
+              (range i (+ i (* d 4)) d)))))))) ; 1 3 5 7 (skip delta)
+
