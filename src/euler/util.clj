@@ -40,9 +40,11 @@
                             (+ candidate 2))))))]
     (cons 2 (lazy-seq (next-primes {} 3)))))
 
-(defn prime? [n]
-  (if (and (not= n 2) (even? n)) false
-    (some #(= n %) (take-while #(<= % n) (prime-sieve))))) ; in prime-sieve list?
+(def prime?
+  (memoize
+    (fn [n]
+      (if (and (not= n 2) (even? n)) false
+        (some #(= n %) (take-while #(<= % n) (prime-sieve))))))) ; in prime-sieve list?
 
 ; From http://stackoverflow.com/questions/9556393/clojure-tail-recursion-with-prime-factors
 (defn prime-factors
