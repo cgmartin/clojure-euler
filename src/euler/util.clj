@@ -2,6 +2,10 @@
   (:use [clojure.string :as str :only []])
   (:require [clojure.math.numeric-tower :as math]))
 
+; REPL
+; (require '[clojure.math.numeric-tower :as math])
+; (require '[clojure.math.combinatorics :as combo])
+
 ; From http://stackoverflow.com/questions/2352020/debugging-in-clojure
 (defmacro dbg[x]
   `(let [x# ~x] (println "dbg:" '~x "=" x#) x#))
@@ -69,6 +73,13 @@
 
 (defn abundant-number? [n]
   (> (sum-proper-divisors n) n))
+
+; https://en.wikipedia.org/wiki/Order_(number_theory)
+(defn multiplicative-order [a n]
+  (loop [k 1]
+    (if (= (mod (math/expt a k) n) 1) k
+      (if (= k n) nil
+        (recur (inc k))))))
 
 ; FIXME optimize?
 (defn palindrome? [s]

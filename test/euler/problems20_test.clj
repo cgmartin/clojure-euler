@@ -33,3 +33,9 @@
     (is (= 476 (problem25 100)))
     ))
 
+(deftest problem26-test
+  (testing "Reciprocal cycles"
+    (is (= 19  (problem26 20)))
+    (is (= 97  (problem26 100)))
+    ))
+

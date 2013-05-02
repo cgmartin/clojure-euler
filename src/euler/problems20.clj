@@ -78,3 +78,16 @@
         (drop-while #(< (count (last %)) n)
           (map-indexed vector
             (list-add-fib [1] [1])))))))
+
+
+; Problem 26 : Reciprocal cycles
+(defn problem26
+  "Reciprocal cycles"
+  [n]
+  (key
+    (apply max-key val
+      (into {}
+        (filter #(not (nil? (val (first %))))
+          (map #(hash-map % (multiplicative-order 10 %))
+            (take-while #(< % n) (prime-sieve))))))))
+
