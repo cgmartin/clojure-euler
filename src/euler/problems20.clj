@@ -98,8 +98,8 @@
   (let [best
         (reduce #(if (> (%1 :n) (%2 :n)) %1 %2)
           ; Optimization - Take odd numbers from 'a' and primes from 'b'
-          (for [a (filter odd? (range (- 1 r) r))
-                b (take-while #(< % r) (prime-sieve))]
+          (for [b (take-while #(< % r) (prime-sieve))
+                a (filter odd? (range (- 1 r) r))]
             (loop [a a
                    b b
                    n 0]
