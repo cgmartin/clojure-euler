@@ -39,3 +39,8 @@
     (is (= 97  (problem26 100)))
     ))
 
+(deftest problem27-test
+  (testing "Quadratic primes"
+    (is (= -21   (problem27 10)))
+    (is (= -1455 (problem27 100)))
+    ))

@@ -91,3 +91,18 @@
           (map #(hash-map % (multiplicative-order 10 %))
             (take-while #(< % n) (prime-sieve))))))))
 
+; Problem 27 : Quadratic primes
+(defn problem27
+  "Quadratic primes"
+  [r]
+  (let [best
+        (reduce #(if (> (%1 :n) (%2 :n)) %1 %2)
+          (for [a (range (- 1 r) r)
+                b (range (- 1 r) r)]
+            (loop [a a
+                   b b
+                   n 0]
+              (if (not (prime? (quadratic n 1 a b)))
+                {:a a, :b b, :n n}
+                (recur a b (inc n))))))]
+    (* (best :a) (best :b))))

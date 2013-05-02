@@ -108,6 +108,11 @@
   [n]
   (reduce * (range 1 (inc n))))
 
+(defn quadratic
+  "Quadratic function"
+  [x a b c]
+  (+ (* a (math/expt x 2)) (* b x) c))
+
 (defn digits
   "Get the digits of a number"
   [n]
