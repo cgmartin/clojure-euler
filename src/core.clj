@@ -7,6 +7,6 @@
 (defn -main
   "For running tests in debugger"
   [& args]
-  (println (problem26 100)))
+  (time (println (problem29 2 100))))
 
 (-main)

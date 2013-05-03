@@ -50,3 +50,9 @@
     (is (= 101 (problem28 5)))
     (is (= 261 (problem28 7)))
     ))
+
+(deftest problem29-test
+  (testing "Distinct powers"
+    (is (= 15 (problem29 2 5)))
+    (is (= 69 (problem29 2 10)))
+    ))

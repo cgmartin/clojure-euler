@@ -125,3 +125,13 @@
             (concat acc
               (range i (+ i (* d 4)) d)))))))) ; 1 3 5 7 (skip delta)
 
+
+; Problem 29 : Distinct powers
+(defn problem29
+  "Distinct powers"
+  [m n]
+  (count
+    (distinct
+      (for [a (range m (inc n))
+            b (range m (inc n))]
+        (math/expt a b)))))
