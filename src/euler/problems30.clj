@@ -20,3 +20,17 @@
       (for [x (range 10 limit)
             :when (= x (reduce + (map #(math/expt % n) (digits x))))]
         x))))
+
+; Problem 31 : Coin sums
+(defn ways-to-make-change
+  [coins amount]
+  (cond
+    (or (empty? coins) (< amount 0)) 0
+    (zero? amount) 1
+    :else (+ (ways-to-make-change (rest coins) amount)
+             (ways-to-make-change coins        (- amount (first coins))))))
+
+(defn problem31
+  "Coin sums"
+  [coins amount]
+  (ways-to-make-change coins amount))
