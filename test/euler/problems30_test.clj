@@ -13,3 +13,8 @@
     (is (= 68  (problem31 '(200 100 50 20 10 5 2 1) 25)))
     (is (= 451 (problem31 '(200 100 50 20 10 5 2 1) 50)))
     ))
+
+(deftest problem32-test
+  (testing "Pandigital products"
+    (is (= 52  (problem32 (range 1 6))))
+    ))

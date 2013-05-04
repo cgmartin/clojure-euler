@@ -21,16 +21,30 @@
             :when (= x (reduce + (map #(math/expt % n) (digits x))))]
         x))))
 
-; Problem 31 : Coin sums
-(defn ways-to-make-change
-  [coins amount]
-  (cond
-    (or (empty? coins) (< amount 0)) 0
-    (zero? amount) 1
-    :else (+ (ways-to-make-change (rest coins) amount)
-             (ways-to-make-change coins        (- amount (first coins))))))
 
+; Problem 31 : Coin sums
 (defn problem31
   "Coin sums"
   [coins amount]
-  (ways-to-make-change coins amount))
+  (num-combo-sum-fit coins amount))
+
+
+; Problem 32 : Pandigital products
+(defn- pandig-prod?
+  [a b s]
+  (let [d (concat (digits a) (digits b) (digits (* a b)))]
+    (= s (sort d))))
+
+(defn problem32
+  "Pandigital products"
+  [s]
+  (let [half-digits (quot (count s) 2)]
+    (reduce +
+      (distinct
+        ; given a 9 digit product of A*B, and a number A of length 1<a<5,
+        ; the other number B must have length 4.5-A < B < 5-A
+        (for [a (range 1 (math/expt 10 half-digits))
+              b (range 1 (math/expt 10 (- (inc half-digits) (num-digits a))))
+              :when (pandig-prod? a b s)]
+          (* a b))))))
+

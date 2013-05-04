@@ -120,6 +120,23 @@
   [n]
   (map #(Integer/parseInt (str %)) (seq (str n))))
 
+(defn num-digits
+  [n]
+  (loop [n n
+         d 0]
+    (let [q (quot n 10)]
+      (if (= q 0)
+        (inc d)
+        (recur q (inc d))))))
+
+(defn digits-to-int
+  [s]
+  (reduce +
+    (map-indexed
+      (fn [i v]
+        (* v (math/expt 10 i)))
+      (reverse s))))
+
 (defn- next-list-digit
   [s]
   (if (empty? s) 0 (first s)))
@@ -172,3 +189,10 @@
         (conj acc (concat (list-multiply-digit a (first b)) (repeat i 0)))
         (inc i)))))
 
+(defn num-combo-sum-fit
+  [nums sum]
+  (cond
+    (or (empty? nums) (< sum 0)) 0
+    (zero? sum) 1
+    :else (+ (num-combo-sum-fit (rest nums) sum)
+             (num-combo-sum-fit nums        (- sum (first nums))))))
