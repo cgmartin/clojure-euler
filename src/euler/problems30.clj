@@ -1,5 +1,6 @@
 (ns euler.problems30
-  (:use euler.util)
+  (:use euler.util
+        clojure.set)
   (:require [clojure.math.numeric-tower :as math])
   (:require [clojure.math.combinatorics :as combo]))
 
@@ -48,3 +49,29 @@
               :when (pandig-prod? a b s)]
           (* a b))))))
 
+
+; Problem 33 : Digit canceling fractions
+(defn- cancelled-frac
+  [n d]
+  (let [digits-n (digits n)
+        digits-d (digits d)
+        cancel-n (difference (set digits-n) (set digits-d))
+        cancel-d (difference (set digits-d) (set digits-n))]
+    (if (and (not= (first digits-n) (last digits-n))
+             (not= (first digits-d) (last digits-d))
+             (not= 0 (last digits-n) (last digits-d))
+             (= 1 (count cancel-n) (count cancel-d))
+             (> (first cancel-d) (first cancel-n)))
+      (/ (first cancel-n) (first cancel-d)))))
+
+(defn problem33
+  "Digit canceling fractions"
+  []
+  (denominator
+    (reduce *
+      (for [d (range 11 100)
+            n (range 10 d)
+            :let [f (/ n d)
+                  c (cancelled-frac n d)]
+            :when (= c f)]
+        f))))

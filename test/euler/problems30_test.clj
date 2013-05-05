@@ -18,3 +18,8 @@
   (testing "Pandigital products"
     (is (= 52  (problem32 (range 1 6))))
     ))
+
+(deftest problem33-test
+  (testing "Digit canceling fractions"
+    (is (= 100  (problem33)))
+    ))
